@@ -5,9 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.tharindu.expense.entity.Expense;
+import org.tharindu.expense.exceptions.ResourceNotFound;
 import org.tharindu.expense.repository.ExpenseRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,7 +27,7 @@ public class ExpenseServiceImplementation implements ExpenseService {
             return expense.get();
         }
         else{
-            throw new RuntimeException("Expense not found");
+            throw new ResourceNotFound("Expense not found for id " + id);
         }
     }
 
