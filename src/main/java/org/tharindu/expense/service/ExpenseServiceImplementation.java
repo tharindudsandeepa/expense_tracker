@@ -1,6 +1,8 @@
 package org.tharindu.expense.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.tharindu.expense.entity.Expense;
 import org.tharindu.expense.repository.ExpenseRepository;
@@ -15,8 +17,8 @@ public class ExpenseServiceImplementation implements ExpenseService {
     private ExpenseRepository expenseRepository;
 
     @Override
-    public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
+    public Page<Expense> getAllExpenses(Pageable page) {
+        return expenseRepository.findAll(page);
     }
     @Override
     public Expense getExpenseById(Long id) {
